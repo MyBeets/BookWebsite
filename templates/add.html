@@ -1,0 +1,10 @@
+{% extends "master.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+<form action="/add/signup/" method="post">
+  <input type="text" name="email"></input>
+  <input type="submit" value="Signup"></input>
+</form>
+{% endblock %}
