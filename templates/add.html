@@ -3,8 +3,20 @@
 {% block title %}Home{% endblock %}
 
 {% block body %}
-<form action="/add/signup/" method="post">
-  <input type="text" name="email"></input>
-  <input type="submit" value="Signup"></input>
+<h1> Add book </h1>
+<form action="/add/add_book/" method="post">
+  <input type="text" name="title"></input>
+  <input type="text" name="author"></input>
+  <input type="text" name="genres"></input>
+  <input type="submit" value="add book"></input>
+</form>
+
+<h1>&emsp;</h1>
+
+<h1> Add edge </h1>
+<form action="/add/add_edge/" method="post">
+  <input type="text" name="book1"></input>
+  <input type="text" name="book2"></input>
+  <input type="submit" value="add edge"></input>
 </form>
 {% endblock %}
