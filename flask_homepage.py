@@ -40,12 +40,6 @@ def search():
     """
     return flask.render_template('search.html')
 
-@APP.route('/search/display_results')
-def display_results():
-    """ Displays the index page accessible at '/'
-    """
-    return flask.render_template('display_results.html')
-
 
 """
 ROUTES FOR FUNCTIONS
@@ -54,7 +48,7 @@ ROUTES FOR FUNCTIONS
 def results():
     book_id = db_format(request.form['book_id'])
     search_results = db_search(book_id)
-    return redirect('/search/display_results/')
+    return display_results(search_results)
 
 
 @APP.route('/add/add_book/', methods = ['POST'])
@@ -73,6 +67,36 @@ def add_edge():
     print("The edge is " + book1 + ", " + book2)
     db_add_edge(book1, book2)
     return redirect('/add/')
+
+@APP.route('/book/', methods = ['POST'])
+def book_main():
+    book = request.form.to_dict()
+    print("___" + str(book) + "___")
+    print( type(book) )
+    return flask.render_template('book.html', book = book)
+
+
+"""
+FUNCTIONS WITHOUT ROUTES
+"""
+
+def display_results(search_results):
+    """ Displays the index page accessible at '/'
+    """
+    books = []
+    #print("DEBUG")
+    #print(search_results)
+    for book in search_results:
+            books.append(book)
+            print(book)
+
+
+    return flask.render_template('display_results.html', results = books)
+
+def display_book_main(book):
+    """ Displays the index page accessible at '/'
+    """
+    return flask.render_template('book.html', book = book)
 
 
 if __name__ == '__main__':

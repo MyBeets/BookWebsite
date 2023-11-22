@@ -33,3 +33,10 @@ def db_add_edge(book1, book2):
 	for b in book1_dict:
 		print(b)
 	return False
+
+def db_search(query):
+	book1_dict = books.find({ "title": {"$regex" : query} })
+	if book1_dict:
+		return book1_dict
+	return 1
+
